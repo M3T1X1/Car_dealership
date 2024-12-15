@@ -29,6 +29,11 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 1000;
         }
+        .modal-header {
+            background-color: #f2f2f2;
+            padding: 10px;
+            cursor: move;
+        }
         .modal-overlay {
             display: none;
             position: fixed;
@@ -38,6 +43,9 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
             z-index: 999;
+        }
+        label{
+            font-weight: bold;
         }
     </style>
 </head>
@@ -112,15 +120,24 @@
     <div class="modal" id="add-car-modal">
         <h2>Dodaj samochód</h2>
         <form id="add-car-form">
-            <label>VIN: <input type="text" name="vin" required></label><br>
-            <label>Marka: <input type="text" name="marka" required></label><br>
-            <label>Model: <input type="text" name="model" required></label><br>
-            <label>Rocznik: <input type="number" name="rocznik" required></label><br>
-            <label>Silnik: <input type="text" name="silnik" required></label><br>
-            <label>Skrzynia: <input type="text" name="skrzynia" required></label><br>
-            <label>Stan: <input type="text" name="stan" required></label><br>
-            <label>Cena: <input type="number" name="cena" required></label><br>
-            <label>Placówka ID: <input type="text" name="placowkaid" required></label><br>
+            <label>VIN:</label><br>
+            <input type="text" name="vin" required><br>
+            <label>Marka:</label><br>
+            <input type="text" name="marka" required><br>
+            <label>Model:</label><br>
+            <input type="text" name="model" required><br>
+            <label>Rocznik:</label><br>
+            <input type="text" name="rocznik" required><br>
+            <label>Silnik:</label><br>
+            <input type="text" name="silnik" required><br>
+            <label>Skrzynia:</label><br>
+            <input type="text" name="skrzynia" required><br>
+            <label>Stan:</label><br>
+            <input type="text" name="stan" required><br>
+            <label>Cena:</label><br>
+            <input type="text" name="cena" required><br>
+            <label>Placówka ID:</label><br>
+            <input type="text" name="placowkaid" required><br>
             <button type="submit">Dodaj</button>
             <button type="button" id="cancel-button">Anuluj</button>
         </form>
@@ -129,24 +146,35 @@
     <div class="modal-overlay"></div>
     <div class="modal" id="delete-car-modal">
         <h2>Usuń samochód</h2>
-        <p>Czy na pewno chcesz usunąć samochód o VIN: <span id="delete-vin"></span>?</p>
+        <p style="font-weight: bold;">Czy na pewno chcesz usunąć samochód o VIN: <span id="delete-vin" style="text-decoration: underline;"></span> ?</p>
         <button id="confirm-delete-button">Usuń</button>
         <button id="cancel-delete-button">Anuluj</button>
     </div>
 
     <div class="modal-overlay"></div>
     <div class="modal" id="edit-car-modal">
-        <h2>Edytuj samochód</h2>
+        <h2>Edytuj Samochód</h2>
         <form id="edit-car-form">
-            <label>VIN: <input type="text" name="vin" id="edit-vin" readonly></label><br>
-            <label>Marka: <input type="text" name="marka" id="edit-marka" required></label><br>
-            <label>Model: <input type="text" name="model" id="edit-model" required></label><br>
-            <label>Rocznik: <input type="number" name="rocznik" id="edit-rocznik" required></label><br>
-            <label>Silnik: <input type="text" name="silnik" id="edit-silnik" required></label><br>
-            <label>Skrzynia: <input type="text" name="skrzynia" id="edit-skrzynia" required></label><br>
-            <label>Stan: <input type="text" name="stan" id="edit-stan" required></label><br>
-            <label>Cena: <input type="number" name="cena" id="edit-cena" required></label><br>
-            <label>Placówka ID: <input type="text" name="placowkaid" id="edit-placowkaid" required></label><br>
+            <label>VIN (do edycji):</label><br>
+            <input type="text" name="vin_do_edycji" id="edit-vin-do-edycji" readonly><br>
+            <label>VIN:</label><br>
+            <input type="text" name="vin" id="edit-vin" required><br>
+            <label>Marka:</label><br>
+            <input type="text" name="marka" id="edit-marka" required><br>
+            <label>Model:</label><br>
+            <input type="text" name="model" id="edit-model" required><br>
+            <label>Rocznik:</label><br>
+            <input type="text" name="rocznik" id="edit-rocznik" required><br>
+            <label>Silnik:</label><br>
+            <input type="text" name="silnik" id="edit-silnik" required><br>
+            <label>Skrzynia:</label><br>
+            <input type="text" name="skrzynia" id="edit-skrzynia" required><br>
+            <label>Stan:</label><br>
+            <input type="text" name="stan" id="edit-stan" required><br>
+            <label>Cena:</label><br>
+            <input type="text" name="cena" id="edit-cena" required><br>
+            <label>Placówka ID:</label><br>
+            <input type="text" name="placowkaid" id="edit-placowkaid" required><br>
             <button type="submit">Zapisz</button>
             <button type="button" id="cancel-edit-button">Anuluj</button>
         </form>
@@ -249,6 +277,7 @@
 
             function showEditModal(data) {
                 // Wypełnij pola formularza danymi
+                $('#edit-vin-do-edycji').val(data.vin); // VIN do edycji (readonly)
                 $('#edit-vin').val(data.vin);
                 $('#edit-marka').val(data.marka);
                 $('#edit-model').val(data.model);
@@ -289,15 +318,15 @@
             });
 
             // Obsługa zapisu zmian
-            $('#edit-car-form').on('submit', function(event) {
+            $('#edit-car-form').on('submit', function (event) {
                 event.preventDefault();
-
                 const formData = $(this).serialize();
 
                 $.ajax({
-                    url: 'edytuj_samochod.php',
+                    url: 'edytuj_samochod.php', // Plik obsługujący edycję
                     method: 'POST',
                     data: formData,
+                    dataType: 'json', // Oczekujemy JSON w odpowiedzi
                     success: function(response) {
                         alert('Samochód został zaktualizowany.');
                         location.reload();
@@ -307,6 +336,7 @@
                     }
                 });
             });
+
         });
 
 

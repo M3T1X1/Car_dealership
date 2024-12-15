@@ -3,6 +3,7 @@ require_once "db_connection.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Pobranie danych z żądania POST
+    $vin_do_edycji = $_POST['vin_do_edycji'];
     $vin = $_POST['vin'];
     $marka = $_POST['marka'];
     $model = $_POST['model'];
@@ -15,8 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // Przygotowanie wywołania procedury
-        $sql = "CALL edytujsamochod($1, $2, $3, $4, $5, $6, $7, $8, $9)";
-        $params = [$vin, $marka, $model, $rocznik, $silnik, $skrzynia, $stan, $cena, $placowkaid];
+        $sql = "CALL edytujSamochod($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)";
+        $params = [$vin_do_edycji, $vin, $marka, $model, $rocznik, $silnik, $skrzynia, $stan, $cena, $placowkaid];
 
         // Wywołanie procedury z parametrami
         $result = pg_query_params($conn, $sql, $params);
@@ -25,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception("Błąd podczas wywoływania procedury: " . pg_last_error($conn));
         }
 
-        echo json_encode(["success" => true, "message" => "Samochód został dodany."]);
+        echo json_encode(["success" => true, "message" => "Samochód został zaktualizowany."]);
     } catch (Exception $e) {
         http_response_code(500);
         echo json_encode(["success" => false, "error" => $e->getMessage()]);
@@ -36,4 +37,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     http_response_code(405); // Method Not Allowed
     echo json_encode(["success" => false, "error" => "Nieobsługiwana metoda HTTP"]);
 }
-?>
