@@ -187,6 +187,7 @@
             const overlay = $('.modal-overlay');
 
             $('#add-car-button').on('click', function() {
+                $('#add-car-form').trigger('reset');
                 modal.show();
                 overlay.show();
             });
@@ -277,7 +278,7 @@
 
             function showEditModal(data) {
                 // Wypełnij pola formularza danymi
-                $('#edit-vin-do-edycji').val(data.vin); // VIN do edycji (readonly)
+                $('#edit-vin-do-edycji').val(data.vin); // VIN do edycji
                 $('#edit-vin').val(data.vin);
                 $('#edit-marka').val(data.marka);
                 $('#edit-model').val(data.model);

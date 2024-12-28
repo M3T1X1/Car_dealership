@@ -26,9 +26,9 @@
     <table id="zamowienia-table">
         <thead>
             <tr>
-                <th>Zamowienieid</th>
+                <th>Id_zamowienia</th>
                 <th>Kwota</th>
-                <th>Pesel</th>
+                <th>Pesel klienta</th>
                 <th>VIN</th>
                 <th>Usługa naprawy</th>
                 <th>Pesel pracownika</th>
@@ -53,13 +53,13 @@
         // Iteracja przez wyniki zwrócone przez kursor i generowanie opcji do select
         while ($row = pg_fetch_assoc($result)) {
             echo "<tr>";
-            echo "<td>" . $row['zamowienieid'] . "</td>";
+            echo "<td>" . $row['id_zamowienia'] . "</td>";
             echo "<td>" . $row['kwota'] . "</td>";
-            echo "<td>" . $row['pesel'] . "</td>";
+            echo "<td>" . $row['pesel_klienta'] . "</td>";
             echo "<td>" . $row['vin'] . "</td>";
             echo "<td>" . $row['usluganaprawy'] . "</td>";
             echo "<td>" . $row['pesel_pracownika'] . "</td>";
-            echo "<td><button onclick='deleteCar(" . $row['zamowienieid'] . ")'>Delete</button></td>";
+            echo "<td><button onclick='deleteCar(" . $row['id_zamowienia'] . ")'>Delete</button></td>";
             echo "</tr>";
 
             }
