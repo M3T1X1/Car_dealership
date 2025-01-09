@@ -4,7 +4,7 @@ $host = "localhost"; // lub IP serwera
 $port = "5432";
 $dbname = "baza";
 $user = "postgres";
-$password = "Korniszon1";
+$password = "123456";
 
 // Tworzenie połączenia
 $conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
