@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // Wywołanie procedury usunięcia placówki
-        $sql = "CALL usunpodwykonawce($1)";
+        $sql = 'CALL "Podwykonawcy".usunpodwykonawce($1)';
         $result = pg_query_params($conn, $sql, [$nippodwykonawcy]);
 
         if (!$result) {

@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // Wywołanie procedury dodania placówki
-        $sql = "CALL dodajpodwykonawce($1, $2, $3)";
+        $sql = 'CALL "Podwykonawcy".dodajpodwykonawce($1, $2, $3)';
         $result = pg_query_params($conn, $sql, [
             $nippodwykonawcy, 
             $nazwa, 

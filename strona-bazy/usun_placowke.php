@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // Wywołanie procedury usunięcia placówki
-        $sql = "CALL usunplacowke($1)";
+        $sql = 'CALL "Placowki".usunplacowke($1)';
         $result = pg_query_params($conn, $sql, [$id_placowki]);
 
         if (!$result) {

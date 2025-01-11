@@ -68,7 +68,7 @@
 
             try {
                 // Przygotowanie wywołania funkcji PL/SQL
-                $sql = "SELECT * FROM pobierz_firmy() ORDER BY nazwafirmy ASC";
+                $sql = 'SELECT * FROM "Firmy".pobierz_firmy() ORDER BY nazwafirmy ASC';
                 
 
                 $result = pg_query($conn, $sql);

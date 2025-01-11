@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // Wywołanie procedury edytowania placówki
-        $sql = "CALL edytujplacowke($1, $2, $3, $4, $5, $6)";
+        $sql = 'CALL "Placowki".edytujplacowke($1, $2, $3, $4, $5, $6)';
         $result = pg_query_params($conn, $sql, [
             $id_placowki,
             $miasto,

@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Wywołanie procedury aktualizacji stanowiska
-        $sql = "CALL edytujstanowisko($1, $2, $3, $4, $5)";
+        $sql = 'CALL "Stanowiska".edytujstanowisko($1, $2, $3, $4, $5)';
         $result = pg_query_params($conn, $sql, [
             $id_stanowiska,
             $nazwa,
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         echo json_encode([
             "success" => true,
-            "message" => "Stanowisko o ID $id_stanowiska zostało zaktualizowane."
+            "message" => "Stanowisko zostało zaktualizowane."
         ]);
     } catch (Exception $e) {
         http_response_code(500);

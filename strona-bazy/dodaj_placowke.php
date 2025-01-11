@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // Wywołanie procedury dodania placówki
-        $sql = "CALL dodajplacowke($1, $2, $3, $4)";
+        $sql = 'CALL "Placowki".dodajplacowke($1, $2, $3, $4)';
         $result = pg_query_params($conn, $sql, [
             $miasto, 
             $ulica, 

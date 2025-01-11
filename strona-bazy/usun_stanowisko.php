@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception('Błąd połączenia z bazą danych.');
         }
 
-        $sql = "CALL usunstanowisko($1)";
+        $sql = 'CALL "Stanowiska".usunstanowisko($1)';
         $result = pg_query_params($conn, $sql, [$id_stanowiska]);
 
         if (!$result) {
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Poprawna odpowiedź
         echo json_encode([
             "success" => true,
-            "message" => "Stanowisko o ID $id_stanowiska zostało usunięte."
+            "message" => "Stanowisko zostało usunięte."
         ]);
     } catch (Exception $e) {
         http_response_code(500);

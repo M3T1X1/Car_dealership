@@ -37,7 +37,7 @@
 
                 try {
                     // Przygotowanie wywołania funkcji PL/SQL
-                    $sql = "SELECT * FROM pobierz_samochody_podwykonawcy() ORDER BY vin ASC";
+                    $sql = 'SELECT * FROM "Samochody_Podwykonawcy".pobierz_samochody_podwykonawcy() ORDER BY vin ASC';
 
                     $result = pg_query($conn, $sql);
 

@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // Wywołanie procedury usuwania
-        $sql = "CALL usunklienta($1)";
+        $sql = 'CALL "Klienci".usunklienta($1)';
         $result = pg_query_params($conn, $sql, [$pesel]);
 
         if (!$result) {

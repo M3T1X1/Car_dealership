@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // Wywołanie procedury edytowania placówki
-        $sql = "CALL edytujpodwykonawce($1, $2, $3, $4)";
+        $sql = 'CALL "Podwykonawcy".edytujpodwykonawce($1, $2, $3, $4)';
         $result = pg_query_params($conn, $sql, [
             $nippodwykonawcy_do_edycji,
             $nippodwykonawcy, 

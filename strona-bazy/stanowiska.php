@@ -69,7 +69,7 @@
             require_once "db_connection.php";
 
             try {
-                $sql = "SELECT * FROM pobierz_stanowiska();";
+                $sql = 'SELECT * FROM "Stanowiska".pobierz_stanowiska();';
                 $result = pg_query($conn, $sql);
 
                 if (!$result) {

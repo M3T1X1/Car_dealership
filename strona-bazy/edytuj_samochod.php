@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // Przygotowanie wywołania procedury
-        $sql = "CALL edytujSamochod($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)";
+        $sql = 'CALL "Samochody".edytujSamochod($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)';
         $params = [$vin_do_edycji, $vin, $marka, $model, $rocznik, $silnik, $skrzynia, $stan, $cena, $placowkaid];
 
         // Wywołanie procedury z parametrami

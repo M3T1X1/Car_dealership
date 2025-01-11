@@ -72,8 +72,12 @@
         <?php
             require_once "db_connection.php";
 
+         
+
+
             try {
-                $sql = "SELECT * FROM pobierz_samochody();";
+                $sql = 'SELECT * FROM "Samochody".pobierz_samochody();';
+
                 $result = pg_query($conn, $sql);
 
                 if (!$result) {

@@ -73,7 +73,7 @@
 
             try {
                 // Przygotowanie wywołania funkcji PL/SQL
-                $sql = "SELECT * FROM pobierz_placowki() ORDER BY id_placowki ASC";
+                $sql = 'SELECT * FROM "Placowki".pobierz_placowki();';
                 
 
                 $result = pg_query($conn, $sql);

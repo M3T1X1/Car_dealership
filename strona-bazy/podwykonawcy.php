@@ -70,7 +70,7 @@
 
         try {
             // Przygotowanie wywołania funkcji PL/SQL
-            $sql = "SELECT * FROM pobierz_podwykonawcy() ORDER BY nippodwykonawcy ASC";
+            $sql = 'SELECT * FROM "Podwykonawcy".pobierz_podwykonawcy() ORDER BY nippodwykonawcy ASC';
             
 
             $result = pg_query($conn, $sql);

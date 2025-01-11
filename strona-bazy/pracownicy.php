@@ -72,7 +72,7 @@
 
             try {
                 // Przygotowanie wywołania funkcji PL/SQL
-                $sql = "SELECT * FROM pobierz_pracownicy();";
+                $sql = 'SELECT * FROM "Pracownicy".pobierz_pracownicy();';
                 
 
                 $result = pg_query($conn, $sql);

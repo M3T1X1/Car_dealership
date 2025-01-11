@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // Przygotowanie wywołania procedury
-        $sql = "CALL dodajklienta($1, $2, $3, $4, $5)";
+        $sql = 'CALL "Klienci".dodajklienta($1, $2, $3, $4, $5)';
         $params = [
             $pesel,
             $imie,

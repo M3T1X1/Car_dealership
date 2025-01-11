@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Przygotowanie wywołania procedury
-        $sql = "CALL dodajstanowisko($1, $2, $3, $4)";
+        $sql = 'CALL "Stanowiska".dodajstanowisko($1, $2, $3, $4)';
         $params = [$nazwaStanowiska, (int)$minZarobki, (int)$maxZarobki, $doswiadczenie];
 
         // Wywołanie procedury z parametrami
