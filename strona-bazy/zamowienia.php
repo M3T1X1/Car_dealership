@@ -12,6 +12,10 @@
     
     <h1>Zamowienia</h1>
     <button id="add-order-button">Dodaj zamówienie</button>
+    <button id="count-repair-orders-button">Zlicz kwotę naprawy</button>
+    <p id="repair-orders-total"></p>
+
+
 
     <table id="zamowienia-table">
         <thead>
@@ -292,6 +296,35 @@
                 });
             });
         });
+
+        document.getElementById("count-repair-orders-button").addEventListener("click", function () {
+            const resultElement = document.getElementById("repair-orders-total");
+
+            // Wysyłanie zapytania do PHP w celu zliczenia kwoty naprawy
+            fetch('zlicz_kwote_naprawy.php')
+                .then(response => response.text())  // Odbieramy odpowiedź jako tekst
+                .then(text => {
+                    try {
+                        const data = JSON.parse(text);  // Próbujemy sparsować odpowiedź jako JSON
+
+                        if (data.success) {
+                            resultElement.textContent = `Całkowita kwota zamówień naprawy: ${data.total_amount} PLN`;
+                        } else {
+                            resultElement.textContent = `Błąd: ${data.error}`;
+                        }
+                    } catch (e) {
+                        resultElement.textContent = `Błąd odpowiedzi: Otrzymano nieprawidłowy JSON`;
+                        console.error('Błąd podczas parsowania JSON:', e);
+                        console.error('Odpowiedź:', text);
+                    }
+                })
+                .catch(error => {
+                    resultElement.textContent = `Błąd połączenia: ${error}`;
+                });
+        });
+
+
+
     </script>
 
 
